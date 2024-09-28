@@ -28,14 +28,4 @@ public class FileEntity {
 
 
 
-    // newly added--------------
-    private String newsTitle;
-    private String newsSubtitle;
-
-    @Temporal(TemporalType.DATE)
-    private Date postDate;
-
-    @Lob
-    private String newsDescription; // Large description can be stored as a Lob
-
 }

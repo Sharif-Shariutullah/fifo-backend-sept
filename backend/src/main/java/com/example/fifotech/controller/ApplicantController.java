@@ -43,6 +43,7 @@ public class ApplicantController {
 
     ;
 
+}
 
 
 //    // create with image
@@ -102,4 +103,3 @@ public class ApplicantController {
 //    } ;
 
 
-}

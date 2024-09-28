@@ -3,6 +3,7 @@ package com.example.fifotech.services;
 
 import com.example.fifotech.entity.JobApplicant;
 import com.example.fifotech.repository.ApplicantRepository;
+import com.example.fifotech.repository.FileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,17 +15,38 @@ public class ApplicantService {
     @Autowired
     private ApplicantRepository applicantRepository;
 
+    @Autowired
+    private FileRepository fileRepository;
 
     //    create job
-    public JobApplicant applyForNewJob(JobApplicant jobApplicant){
+    public JobApplicant applyForNewJob(JobApplicant jobApplicant) {
+
+
         return applicantRepository.save(jobApplicant);
-    };
+    }
+
+    ;
 
 
     // show from db to website
-    public List<JobApplicant> getAllJobApplicant(){
+    public List<JobApplicant> getAllJobApplicant() {
         return (List<JobApplicant>) applicantRepository.findAll();
     }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //    applicant er list edit or delete korar dorkar ken?
@@ -44,6 +66,3 @@ public class ApplicantService {
 //    ;
 
 
-
-
-}

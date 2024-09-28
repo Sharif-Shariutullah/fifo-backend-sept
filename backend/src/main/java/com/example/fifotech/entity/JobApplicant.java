@@ -13,7 +13,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Data
 @Table(name = "applicants")
-public class JobApplicant {
+public class JobApplicant extends TimeTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,20 +24,24 @@ public class JobApplicant {
     private String email;
     private String phone;
     private LocalDate dateOfBirth;
-    private LocalDate applicationDate;
 
-//    @Lob
-//    @Column(nullable = true)
-//    private byte[] resumePdf;
-//
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_file_id")
+    private FileEntity file;
+
+
+}
+
+
+
+
+
 //    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    @JoinTable(name = "applicant_images", joinColumns = {@JoinColumn(name = "applicant_id")},
 //            inverseJoinColumns = {@JoinColumn(name = "image_id")})
 //    private Set<ImageModel> applicantImages;
 
 
-
-}
 
 
 //    @Enumerated(EnumType.STRING)
