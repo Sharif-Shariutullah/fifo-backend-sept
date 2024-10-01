@@ -19,14 +19,33 @@ public class FileService {
     private FileRepository fileRepository;
 
 
+
+
+
+//    public FileEntity saveFile(MultipartFile file) throws IOException {
+//        FileEntity fileEntity = new FileEntity();
+//        fileEntity.setFileName(file.getOriginalFilename());
+//        fileEntity.setFileType(file.getContentType());
+//        fileEntity.setData(file.getBytes());
+//        return fileEntity;
+//    }
+
     public FileEntity saveFile(MultipartFile file) throws IOException {
         String fileName = file.getOriginalFilename();
+
         FileEntity fileEntity = new FileEntity();
         fileEntity.setName(fileName);
         fileEntity.setType(file.getContentType());
         fileEntity.setData(file.getBytes());
         return fileRepository.save(fileEntity);
     }
+
+
+
+
+
+
+
 
     public Optional<FileEntity> getFile(Long id) {
         return fileRepository.findById(id);

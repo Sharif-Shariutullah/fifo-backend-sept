@@ -19,15 +19,21 @@ public class JobApplicant extends TimeTable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long applicantId;
 
-    private String firstName;
-    private String lastName;
+    private String name;
+    private String address;
     private String email;
     private String phone;
-    private LocalDate dateOfBirth;
+    private String position;
+    private Long yearsOfExperience;
+    private String skills;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_file_id")
-    private FileEntity file;
+
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
+    private byte[] pdfFile;
+
+
+
 
 
 }
@@ -46,7 +52,6 @@ public class JobApplicant extends TimeTable {
 
 //    @Enumerated(EnumType.STRING)
 //    @Column(nullable = false)
-//    private JobOpportunity jobOpportunity;
 
 //    @Lob
 //    @Column(nullable = true)

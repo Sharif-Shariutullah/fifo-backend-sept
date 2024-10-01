@@ -31,7 +31,7 @@ public class JobPostingService {
     }
 
 
-    // edit
+    // edit & Details page
     public JobPosting getJobPostById(Integer id) {
         return jobPostingRepository.findById(id).get();
     }

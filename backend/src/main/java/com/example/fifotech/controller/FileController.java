@@ -30,7 +30,7 @@ public class FileController {
     public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
         try {
             fileService.saveFile(file);
-            return ResponseEntity.ok("File uploaded successfully");
+            return ResponseEntity.ok("this---" + file.getName() + "File uploaded successfully");
         } catch (IOException e) {
             return ResponseEntity.status(500).body("File upload failed: " + e.getMessage());
         }
