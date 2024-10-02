@@ -36,13 +36,13 @@ public class JobPostingController {
 
     // delete
     @DeleteMapping({"/deleteJobPost/{id}"})
-    public void deleteJobPost(@PathVariable("id") Integer id) {
+    public void deleteJobPost(@PathVariable("id") Long id) {
         jobPostingService.deleteJobPost(id);
     }
 
 //    for DP
     @GetMapping({"/getJobPostById/{id}"})
-    public JobPosting getJobPostById(@PathVariable("id") Integer id) {
+    public JobPosting getJobPostById(@PathVariable("id") Long id) {
 
         return jobPostingService.getJobPostById(id);
     }

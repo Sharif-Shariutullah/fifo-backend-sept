@@ -26,13 +26,13 @@ public class JobPostingService {
 
 
     // delete by id
-    public void deleteJobPost(Integer id) {
+    public void deleteJobPost(Long id) {
         jobPostingRepository.deleteById(id);
     }
 
 
     // edit & Details page
-    public JobPosting getJobPostById(Integer id) {
+    public JobPosting getJobPostById(Long id) {
         return jobPostingRepository.findById(id).get();
     }
 

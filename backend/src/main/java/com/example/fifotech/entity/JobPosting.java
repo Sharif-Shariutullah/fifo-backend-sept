@@ -16,7 +16,7 @@ public class JobPosting{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     private String jobTitle;
     @Column(length = 2000)
     private String jobDescription;
