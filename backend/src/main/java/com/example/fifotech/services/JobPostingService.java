@@ -15,6 +15,7 @@ public class JobPostingService {
 
     //    create
     public JobPosting postNewJob(JobPosting jobPosting) {
+
         return jobPostingRepository.save(jobPosting);
     }
 

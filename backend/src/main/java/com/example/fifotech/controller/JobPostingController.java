@@ -26,6 +26,15 @@ public class JobPostingController {
 
     }
 
+//    @PostMapping("/postNewJob")
+//    public ResponseEntity<JobPosting> addNewJobPosting(@RequestBody JobPosting jobPosting) {
+//        JobPosting createdJob = jobPostingService.postNewJob(jobPosting);
+//        return ResponseEntity.ok(createdJob);
+//    }
+
+
+
+
     // show
     @GetMapping({"/getAllJobPosts"})
     public List<JobPosting> getAllJobPosts() {

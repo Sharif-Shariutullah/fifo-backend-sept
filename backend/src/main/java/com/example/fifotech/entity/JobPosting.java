@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,6 +26,16 @@ public class JobPosting{
     private String educationQualification;
     private LocalDate applicationDeadline;
     private String contactInformation;
+
+
+    @ElementCollection
+    private List<String> responsibilities;
+
+    @ElementCollection
+    private List<String> requirements;
+
+    @ElementCollection
+    private List<String> whatWeOffer;
 
 
 }
