@@ -62,19 +62,6 @@ public class NewsController {
 
 
 
-    // ashiq bhai
-
-
-
-
-
-
-
-
-
-
-
-
 
     // create with image   (learn yourself)
 

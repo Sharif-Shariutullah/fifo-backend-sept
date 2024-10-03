@@ -27,18 +27,20 @@ public class Practice {
     private byte[] img;
 
 
-public PracticeDto getDto(){
+    public PracticeDto getDto() {
 
-    PracticeDto practiceDto = new PracticeDto();
+        PracticeDto practiceDto = new PracticeDto();
 
-    practiceDto.setId(id);
-    practiceDto.setTitle(title);
-    practiceDto.setSubtitle(subtitle);
-    practiceDto.setDescription(description);
-    practiceDto.setByteImg(img);
+        practiceDto.setId(id);
+        practiceDto.setTitle(title);
+        practiceDto.setSubtitle(subtitle);
+        practiceDto.setDescription(description);
+        practiceDto.setByteImg(img);
 
 
-    return practiceDto;
-};
+        return practiceDto;
+    }
+
+    ;
 
 }
