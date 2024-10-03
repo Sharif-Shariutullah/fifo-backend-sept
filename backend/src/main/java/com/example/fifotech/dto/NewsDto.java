@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @Data
-public class PracticeDto {
+public class NewsDto {
 
 
     private Long id;
@@ -22,5 +22,6 @@ public class PracticeDto {
     private byte[] byteImg;
 
     private MultipartFile img;
+
 
 }

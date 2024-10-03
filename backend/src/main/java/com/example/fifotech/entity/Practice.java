@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -20,7 +22,11 @@ public class Practice {
 
     private String subtitle;
 
-    private String description;
+
+
+    @ElementCollection
+    private List<String> description;
+
 
     @Lob
     @Column(columnDefinition = "longblob")
