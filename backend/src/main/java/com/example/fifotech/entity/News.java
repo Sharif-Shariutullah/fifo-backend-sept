@@ -13,7 +13,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Table(name = "news")
-public class News {
+public class News extends TimeTable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

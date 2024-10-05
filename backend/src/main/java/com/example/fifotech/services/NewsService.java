@@ -15,7 +15,7 @@ public interface NewsService {
     boolean deleteNews(Long id);
 
 
-//    NewsDto getNewsById(Long id);
+    NewsDto getNewsById(Long id);
 
 //    NewsDto updateNews(Long id, NewsDto newsDto) throws IOException;
 

@@ -53,7 +53,15 @@ public class NewsController {
 
 
 
-
+    @GetMapping("/news/{id}")
+    public ResponseEntity<NewsDto> getNewsById(@PathVariable Long id) {
+        NewsDto newsDto = newsService.getNewsById(id);
+        if (newsDto != null) {
+            return ResponseEntity.ok(newsDto);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 
 
