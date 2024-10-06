@@ -45,9 +45,6 @@ public class NewsServiceImp implements NewsService {
 
 
 
-
-
-
         System.out.println(Arrays.toString(news.getImg()));
         System.out.println(Arrays.toString(ImageUtils.compressImage(news.getImg())));
 
