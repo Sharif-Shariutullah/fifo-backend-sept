@@ -42,7 +42,12 @@ public class GalleryController {
 
 
 
+    // create
+    @PostMapping({"/postNewGallery"})
+    public Gallery example(@RequestBody Gallery gallery) {
 
+        return galleryService.createNewGallery(gallery);
+    }
 
 
 
