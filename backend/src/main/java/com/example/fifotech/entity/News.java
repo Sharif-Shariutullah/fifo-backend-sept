@@ -24,7 +24,7 @@ public class News extends TimeTable{
     private String subtitle;
 
 
-
+    @Column(length = 3000)
     @ElementCollection
     private List<String> description;
 
