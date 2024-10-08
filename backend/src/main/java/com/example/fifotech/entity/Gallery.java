@@ -25,7 +25,7 @@ public class Gallery {
     private String subtitle;
     private LocalDate postDate;
 
-    @Column(length = 2000)
+    @Column(length = 3000)
     private String details;
 
 
@@ -36,8 +36,6 @@ public class Gallery {
     @Lob
     @Column(columnDefinition = "longblob")
     private  List<byte[]> img;
-
-//    private MultipartFile MultiImg;
 
 
 }

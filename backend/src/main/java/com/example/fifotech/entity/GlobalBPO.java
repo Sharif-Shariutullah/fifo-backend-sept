@@ -3,6 +3,10 @@ package com.example.fifotech.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -14,23 +18,21 @@ public class GlobalBPO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer bpoId;
+    private Long id;
 
     private String title;
     private String subtitle;
+    private LocalDate postDate;
 
-    @Column(length = 3000)
+    @Column(length = 2000)
     private String details;
 
-//    //image
-//
-//    @Lob
-//    @Column(name = "bpo_image", length = 5000)
-//    private byte[] bpoImage;
-//
-//    //video
-//    @Lob
-//    @Column(name = "bpo_video", length = 5000)
-//    private byte[] bpoVideo;
+    @OneToMany(mappedBy = "globalBPO", cascade = CascadeType.ALL)
+    private List<imageGB> images = new ArrayList<>();
+
+    @ElementCollection
+    @CollectionTable(name = "global_bpo_captions", joinColumns = @JoinColumn(name = "global_bpo_id"))
+    @Column(name = "caption")
+    private List<String> captions = new ArrayList<>();
 
 }

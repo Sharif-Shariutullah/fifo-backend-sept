@@ -40,25 +40,6 @@ public class GalleryController {
 
 
 
-
-    // create
-    @PostMapping({"/exam"})
-    public Gallery example(@RequestBody Gallery gallery) {
-
-        return galleryService.createNewGallery(gallery);
-    }
-
-
-
-
-
-    // create
-    @PostMapping({"/postNewGallery"})
-    public Gallery addNewGallery(@RequestBody Gallery gallery) {
-
-        return galleryService.createNewGallery(gallery);
-    }
-
     // show
     @GetMapping({"/getAllGallery"})
     public List<Gallery> getAllGallery() {
@@ -73,7 +54,7 @@ public class GalleryController {
         galleryService.deleteGallery(id);
     }
 
-    //edit
+    //Get Element by id to show
     @GetMapping({"/getGalleryById/{id}"})
     public Gallery getGalleryById(@PathVariable("id") Long id) {
         return galleryService.getGalleryById(id);

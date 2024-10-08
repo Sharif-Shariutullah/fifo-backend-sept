@@ -19,29 +19,6 @@ public class GalleryService {
     private GalleryRepository galleryRepository;
 
 
-
-//    //    create
-//    public Gallery createNewGallery(Gallery gallery) throws IOException {
-//
-//        Gallery gallery1 = new Gallery();
-//
-//        gallery1.setTitle(gallery.getTitle());
-//        gallery1.setSubtitle(gallery.getSubtitle());
-//        gallery1.setDetails(gallery.getDetails());
-//        gallery1.setCaption(gallery.getCaption());
-//        gallery1.setPostDate(gallery.getPostDate());
-////        gallery1.setImg(gallery.getMultiImg().getBytes());
-//
-//
-//
-//        return galleryRepository.save(gallery1);
-//    }
-
-
-
-
-
-
     public Gallery saveGallery(String title, String subtitle, String details, List<String> captions, List<MultipartFile> images) throws IOException {
         Gallery gallery = new Gallery();
         gallery.setTitle(title);
@@ -61,42 +38,6 @@ public class GalleryService {
     }
 
 
-
-//    // Retrieve gallery by ID and convert images to Base64
-//    public GalleryDTO getGallery(Long id) {
-//        Gallery gallery = galleryRepository.findById(id).orElseThrow(() -> new RuntimeException("Gallery not found"));
-//
-//        // Convert images from byte[] to Base64 encoded strings
-//        List<String> base64Images = gallery.getImg().stream()
-//                .map(image -> Base64.getEncoder().encodeToString(image))
-//                .collect(Collectors.toList());
-//
-//        // Create and return DTO (Data Transfer Object) with Base64 images
-//        return new GalleryDTO(gallery.getTitle(), gallery.getSubtitle(), gallery.getDetails(), base64Images);
-//    }
-
-
-
-
-
-
-
-
-
-
-
-    //    create
-    public Gallery createNewGallery(Gallery gallery) {
-
-        return galleryRepository.save(gallery);
-    }
-
-
-
-
-
-
-
     // show from db to website
     public List<Gallery> getAllGallery() {
         return (List<Gallery>) galleryRepository.findAll();
@@ -110,7 +51,7 @@ public class GalleryService {
     }
 
 
-    // edit
+    //Get Element by id to show
     public Gallery getGalleryById(Long id) {
         return galleryRepository.findById(id).get();
     }
