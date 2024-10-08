@@ -23,7 +23,6 @@ public class GalleryController {
     private GalleryService galleryService;
 
 
-
     @PostMapping("/upload")
     public Gallery uploadGallery(
             @RequestParam("title") String title,
@@ -43,7 +42,7 @@ public class GalleryController {
 
 
     // create
-    @PostMapping({"/postNewGallery"})
+    @PostMapping({"/exam"})
     public Gallery example(@RequestBody Gallery gallery) {
 
         return galleryService.createNewGallery(gallery);
