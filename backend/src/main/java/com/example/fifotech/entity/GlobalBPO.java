@@ -27,12 +27,18 @@ public class GlobalBPO {
     @Column(length = 2000)
     private String details;
 
-    @OneToMany(mappedBy = "globalBPO", cascade = CascadeType.ALL)
-    private List<imageGB> images = new ArrayList<>();
+//    @OneToMany(mappedBy = "globalBPO", cascade = CascadeType.ALL)
+//    private List<imageGB> images = new ArrayList<>();
+//
+//    @ElementCollection
+//    @CollectionTable(name = "global_bpo_captions", joinColumns = @JoinColumn(name = "global_bpo_id"))
+//    @Column(name = "caption")
+//    private List<String> captions = new ArrayList<>();
 
-    @ElementCollection
-    @CollectionTable(name = "global_bpo_captions", joinColumns = @JoinColumn(name = "global_bpo_id"))
-    @Column(name = "caption")
-    private List<String> captions = new ArrayList<>();
+
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "globalBpo")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "global_bpo_id")
+    private List<imageGB> images = new ArrayList<>();  // Store multiple images with captions
 
 }

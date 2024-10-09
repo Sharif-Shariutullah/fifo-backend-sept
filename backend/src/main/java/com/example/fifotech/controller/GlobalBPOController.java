@@ -1,15 +1,18 @@
 package com.example.fifotech.controller;
 
 import com.example.fifotech.entity.GlobalBPO;
+import com.example.fifotech.entity.imageGB;
 import com.example.fifotech.services.GlobalBPOService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -22,24 +25,60 @@ public class GlobalBPOController {
     @Autowired
     private GlobalBPOService globalBPOService;
 
+//    @PostMapping("/createGlobalBPO")
+//    public ResponseEntity<GlobalBPO> createGlobalBPO(
+//            @RequestParam("title") String title,
+//            @RequestParam("subtitle") String subtitle,
+//            @RequestParam("postDate") LocalDate postDate,
+//            @RequestParam("details") String details,
+//            @RequestParam("images") List<MultipartFile> files,
+//            @RequestParam("captions") List<String> captions) throws IOException {
+//
+//        GlobalBPO globalBPO = new GlobalBPO();
+//        globalBPO.setTitle(title);
+//        globalBPO.setSubtitle(subtitle);
+//        globalBPO.setPostDate(postDate);
+//        globalBPO.setDetails(details);
+//
+//        GlobalBPO createdGlobalBPO = globalBPOService.createGlobalBPO(globalBPO, files, captions);
+//        return ResponseEntity.ok(createdGlobalBPO);
+//    }
+
+
+
     @PostMapping("/createGlobalBPO")
     public ResponseEntity<GlobalBPO> createGlobalBPO(
             @RequestParam("title") String title,
             @RequestParam("subtitle") String subtitle,
-            @RequestParam("postDate") LocalDate postDate,
+            @RequestParam("postDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate postDate,
             @RequestParam("details") String details,
-            @RequestParam("images") List<MultipartFile> files,
-            @RequestParam("captions") List<String> captions) throws IOException {
+            @RequestParam("captions") List<String> captions, // Captions list for each image
+            @RequestParam("images") List<MultipartFile> images  // Multiple images
+    ) throws IOException {
 
-        GlobalBPO globalBPO = new GlobalBPO();
-        globalBPO.setTitle(title);
-        globalBPO.setSubtitle(subtitle);
-        globalBPO.setPostDate(postDate);
-        globalBPO.setDetails(details);
+        GlobalBPO bpo = new GlobalBPO();
+        bpo.setTitle(title);
+        bpo.setSubtitle(subtitle);
+        bpo.setPostDate(postDate);
+        bpo.setDetails(details);
 
-        GlobalBPO createdGlobalBPO = globalBPOService.createGlobalBPO(globalBPO, files, captions);
-        return ResponseEntity.ok(createdGlobalBPO);
+        List<imageGB> postImages = new ArrayList<>();
+        for (int i = 0; i < images.size(); i++) {
+
+            MultipartFile imageFile = images.get(i);
+            imageGB postImage = new imageGB();
+            postImage.setImg(imageFile.getBytes());
+            postImage.setCaption(captions.get(i)); // Add the corresponding caption
+            postImages.add(postImage);
+        }
+
+        bpo.setImages(postImages);  // Attach images with captions to the post
+        GlobalBPO savedPost = globalBPOService.createGlobalBPO(bpo);
+
+        return ResponseEntity.ok(savedPost);
     }
+
+
 
 
     @GetMapping("/getAllGlobalBPOs")
@@ -47,6 +86,12 @@ public class GlobalBPOController {
         List<GlobalBPO> globalBPOs = globalBPOService.getAllGlobalBPOs();
         return ResponseEntity.ok(globalBPOs);
     }
+
+
+
+
+
+
 
     @GetMapping("/getGlobalBPOById/{id}")
     public ResponseEntity<GlobalBPO> getGlobalBPOById(@PathVariable Long id) {
