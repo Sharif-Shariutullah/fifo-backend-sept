@@ -27,6 +27,16 @@ public class GlobalBPO {
     @Column(length = 2000)
     private String details;
 
+
+
+    //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "globalBpo")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "global_bpo_id")
+    private List<imageGB> images = new ArrayList<>();
+
+
+
+
 //    @OneToMany(mappedBy = "globalBPO", cascade = CascadeType.ALL)
 //    private List<imageGB> images = new ArrayList<>();
 //
@@ -36,9 +46,6 @@ public class GlobalBPO {
 //    private List<String> captions = new ArrayList<>();
 
 
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "globalBpo")
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "global_bpo_id")
-    private List<imageGB> images = new ArrayList<>();  // Store multiple images with captions
+// Store multiple images with captions
 
 }
