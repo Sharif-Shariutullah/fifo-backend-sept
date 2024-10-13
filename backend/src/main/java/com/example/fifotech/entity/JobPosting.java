@@ -19,7 +19,7 @@ public class JobPosting{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String jobTitle;
-    @Column(length = 2000)
+    @Column(length = 5000)
     private String jobDescription;
     private Double salary;
     private Integer experienceRequired;
@@ -29,12 +29,15 @@ public class JobPosting{
 
 
     @ElementCollection
+    @Column(length = 5000)
     private List<String> responsibilities;
 
     @ElementCollection
+    @Column(length = 5000)
     private List<String> requirements;
 
     @ElementCollection
+    @Column(length = 5000)
     private List<String> whatWeOffer;
 
 

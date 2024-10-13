@@ -21,10 +21,11 @@ public class GlobalBPO {
     private Long id;
 
     private String title;
+    @Column(length = 500)
     private String subtitle;
     private LocalDate postDate;
 
-    @Column(length = 2000)
+    @Column(length = 4000)
     private String details;
 
 

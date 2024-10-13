@@ -138,6 +138,15 @@
 
 
 
+		<!-- https://mvnrepository.com/artifact/com.sun.activation/javax.activation -->
+		<dependency>
+			<groupId>com.sun.activation</groupId>
+			<artifactId>javax.activation</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+
+
+
 
 	</dependencies>
 
