@@ -53,7 +53,9 @@ public class GlobalBPOController {
             @RequestParam("postDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate postDate,
             @RequestParam("details") String details,
             @RequestParam("captions") List<String> captions, // Captions list for each image
-            @RequestParam("images") List<MultipartFile> images  // Multiple images
+            @RequestParam("images") List<MultipartFile> images,  // Multiple images
+            @RequestParam("thumbnailImage") MultipartFile thumbnailImage // New parameter for thumbnail
+
     ) throws IOException {
 
         GlobalBPO bpo = new GlobalBPO();
@@ -61,6 +63,12 @@ public class GlobalBPOController {
         bpo.setSubtitle(subtitle);
         bpo.setPostDate(postDate);
         bpo.setDetails(details);
+
+        // Set thumbnail image
+        if (thumbnailImage != null && !thumbnailImage.isEmpty()) {
+            bpo.setThumbnailImage(thumbnailImage.getBytes());
+        }
+
 
         List<imageGB> postImages = new ArrayList<>();
         for (int i = 0; i < images.size(); i++) {

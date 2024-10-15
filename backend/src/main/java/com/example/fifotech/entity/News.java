@@ -18,14 +18,14 @@ public class News extends TimeTable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(length = 5000)
     private String title;
-
+    @Column(length = 1000)
     private String subtitle;
 
 
-    @Column(length = 3000)
     @ElementCollection
+    @Column(length = 5000)
     private List<String> description;
 
 

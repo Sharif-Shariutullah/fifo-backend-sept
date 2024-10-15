@@ -7,6 +7,7 @@ import com.example.fifotech.entity.JobPosting;
 import com.example.fifotech.services.ApplicantService;
 import com.example.fifotech.services.FileService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,7 +59,7 @@ public class ApplicantController {
             @RequestParam("position") String position,
             @RequestParam("yearsOfExperience") Long yearsOfExperience,
             @RequestParam("skills") String skills,
-            @RequestParam("pdfFile") MultipartFile pdfFile) throws IOException {
+            @RequestParam("pdfFile") MultipartFile pdfFile) throws IOException, MessagingException {
 
         return applicantService.applyForNewJob(name, address, email, phone, position, yearsOfExperience, skills, pdfFile);
     }

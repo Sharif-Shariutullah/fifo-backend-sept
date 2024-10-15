@@ -24,6 +24,7 @@ public class imageGB {
     @Column(columnDefinition = "longblob")
     private byte[] img;
 
+    @Column(length = 2000)
     private String caption;
 
 //    @ElementCollection

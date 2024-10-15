@@ -30,6 +30,6 @@ public class Video {
 //    @Column(name = "video", length = 5000)
 //    private byte[] video;
 
-
+private String count;
 
 }

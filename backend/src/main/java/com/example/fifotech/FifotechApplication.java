@@ -6,9 +6,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class FifotechApplication {
 
+
 	public static void main(String[] args) {
 		SpringApplication.run(FifotechApplication.class, args);
+		System.out.println("hello");
 	}
+
+
+
 
 }
 
