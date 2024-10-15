@@ -74,8 +74,10 @@ public class GlobalBPOController {
 
         bpo.setImages(postImages);  // Attach images with captions to the post
         GlobalBPO savedPost = globalBPOService.createGlobalBPO(bpo);
+        System.out.println("Received Captions: " + captions);
 
         return ResponseEntity.ok(savedPost);
+
     }
 
 
