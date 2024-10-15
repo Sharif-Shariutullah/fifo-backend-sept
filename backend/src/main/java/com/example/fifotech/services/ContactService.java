@@ -40,7 +40,7 @@ public class ContactService {
 
         try {
             // Send the email
-            emailService.sendContactEmail("sharif.shariutullah@gmail.com", subject, body);
+            emailService.sendContactEmail("wetechhub.info@gmail.com", subject, body);
         } catch (Exception e) {
             // Handle email sending error
             e.printStackTrace();

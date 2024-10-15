@@ -25,6 +25,8 @@ public class JobApplicant extends TimeTable {
     private String phone;
     private String position;
     private Long yearsOfExperience;
+
+    @Column(length = 5000)
     private String skills;
 
 

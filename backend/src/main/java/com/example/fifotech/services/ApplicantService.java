@@ -89,7 +89,7 @@ public class ApplicantService {
 
         // Send email with attachment (useSecondaryEmail can be true or false based on your logic)
         emailService.sendEmailWithAttachment(
-                "sharifddfm307945@gmail.com",  // Recipient's email
+                "hr.wetechhub@gmail.com",  // Recipient's email
                 subject,
                 body,
                 pdfFile.getBytes(),  // PDF file content

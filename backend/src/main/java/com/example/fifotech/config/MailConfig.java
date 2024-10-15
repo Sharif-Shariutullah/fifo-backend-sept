@@ -19,8 +19,8 @@ public class MailConfig {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
-        mailSender.setUsername("sharif.shariutullah@gmail.com");
-        mailSender.setPassword("kluigthayplssvaz");
+        mailSender.setUsername("wetechhub.info@gmail.com");
+        mailSender.setPassword("aynrsmzqkyrqhdmd");
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
@@ -40,8 +40,8 @@ public class MailConfig {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
-        mailSender.setUsername("sharifddfm307945@gmail.com");
-        mailSender.setPassword("mxtzxltlgonrqhoh");
+        mailSender.setUsername("hr.wetechhub@gmail.com");
+        mailSender.setPassword("knhgpthdzcshtutg");
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
