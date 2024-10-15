@@ -20,6 +20,11 @@ public class GlobalBPO {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+
+    @Lob
+    @Column(columnDefinition = "longblob")
+    private byte[] thumbnailImage;
+
     private String title;
     @Column(length = 500)
     private String subtitle;
@@ -35,18 +40,5 @@ public class GlobalBPO {
     @JoinColumn(name = "global_bpo_id")
     private List<imageGB> images = new ArrayList<>();
 
-
-
-
-//    @OneToMany(mappedBy = "globalBPO", cascade = CascadeType.ALL)
-//    private List<imageGB> images = new ArrayList<>();
-//
-//    @ElementCollection
-//    @CollectionTable(name = "global_bpo_captions", joinColumns = @JoinColumn(name = "global_bpo_id"))
-//    @Column(name = "caption")
-//    private List<String> captions = new ArrayList<>();
-
-
-// Store multiple images with captions
 
 }
