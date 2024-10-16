@@ -3,6 +3,7 @@ package com.example.fifotech.services;
 import com.example.fifotech.entity.Gallery;
 import com.example.fifotech.entity.JobPosting;
 import com.example.fifotech.repository.GalleryRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -53,7 +54,7 @@ public class GalleryService {
 
     //Get Element by id to show
     public Gallery getGalleryById(Long id) {
-        return galleryRepository.findById(id).get();
+        return galleryRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Gallery not found with id: " + id));
     }
 
 }
