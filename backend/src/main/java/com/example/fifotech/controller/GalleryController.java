@@ -1,17 +1,18 @@
 package com.example.fifotech.controller;
 
-import com.example.fifotech.entity.Gallery;
-import com.example.fifotech.entity.JobPosting;
+import com.example.fifotech.entity.*;
 import com.example.fifotech.services.GalleryService;
-import com.example.fifotech.services.JobPostingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -25,18 +26,51 @@ public class GalleryController {
     private GalleryService galleryService;
 
 
-    @PostMapping("/upload")
-    public Gallery uploadGallery(
+    @PostMapping("/createGallery")
+    public ResponseEntity<Gallery> createGallery(
             @RequestParam("title") String title,
             @RequestParam("subtitle") String subtitle,
+            @RequestParam("postDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate postDate,
             @RequestParam("details") String details,
-            @RequestParam("captions") List<String> captions,
-            @RequestParam("images") List<MultipartFile> images) throws IOException {
+            @RequestParam("captions") List<String> captions, // Captions list for each image
+            @RequestParam("images") List<MultipartFile> images,  // Multiple images
+            @RequestParam("thumbnailImage") MultipartFile thumbnailImage // New parameter for thumbnail
+
+    ) throws IOException {
+
+        Gallery gallery = new Gallery();
+        gallery.setTitle(title);
+        gallery.setSubtitle(subtitle);
+        gallery.setPostDate(postDate);
+        gallery.setDetails(details);
+
+        // Set thumbnail image
+        if (thumbnailImage != null && !thumbnailImage.isEmpty()) {
+            gallery.setThumbnailImage(thumbnailImage.getBytes());
+        }
 
 
+        List<ImageGallery> postImages = new ArrayList<>();
+        for (int i = 0; i < images.size(); i++) {
 
-        return galleryService.saveGallery(title, subtitle, details, captions, images);
+            MultipartFile imageFile = images.get(i);
+            ImageGallery postImage = new ImageGallery();
+            postImage.setImg(imageFile.getBytes());
+            postImage.setCaption(captions.get(i)); // Add the corresponding caption
+            postImages.add(postImage);
+        }
+
+        gallery.setImages(postImages);  // Attach images with captions to the post
+
+        Gallery savedPost = galleryService.saveGallery(gallery);
+        System.out.println("Received Captions: " + captions);
+
+        return ResponseEntity.ok(savedPost);
+
     }
+
+
+
 
 
 
@@ -75,16 +109,33 @@ public class GalleryController {
         return ResponseEntity.ok(galleries);
     }
 
+
+
+
+
+
     @DeleteMapping("/deleteGallery/{id}")
-    public ResponseEntity<Void> deleteGallery(@PathVariable("id") Long id) {
+    public ResponseEntity<Void> deleteGallery(@PathVariable Long id) {
         galleryService.deleteGallery(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/getGalleryById/{id}")
-    public ResponseEntity<Gallery> getGalleryById(@PathVariable("id") Long id) {
-        Gallery gallery = galleryService.getGalleryById(id);
+
+
+    @PutMapping("/updateGallery/{id}")
+    public ResponseEntity<Gallery> updateGallery(@PathVariable Long id, @RequestBody Gallery updatedGallery) {
+        Gallery gallery = galleryService.updateGallery(id, updatedGallery);
         return ResponseEntity.ok(gallery);
+    }
+
+
+
+
+    @GetMapping("/getGalleryById/{id}")
+    public ResponseEntity<Gallery> getGalleryById(@PathVariable Long id) {
+        return galleryService.getGalleryById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
 

@@ -1,17 +1,15 @@
 package com.example.fifotech.services;
 
 import com.example.fifotech.entity.Gallery;
-import com.example.fifotech.entity.JobPosting;
 import com.example.fifotech.repository.GalleryRepository;
-import jakarta.persistence.EntityNotFoundException;
+import com.example.fifotech.repository.ImageGalleryRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GalleryService {
@@ -19,42 +17,49 @@ public class GalleryService {
     @Autowired
     private GalleryRepository galleryRepository;
 
+    @Autowired
+    private ImageGalleryRepository imageGalleryRepository;
 
-    public Gallery saveGallery(String title, String subtitle, String details, List<String> captions, List<MultipartFile> images) throws IOException {
-        Gallery gallery = new Gallery();
-        gallery.setTitle(title);
-        gallery.setSubtitle(subtitle);
-        gallery.setPostDate(LocalDate.now());
-        gallery.setDetails(details);
-        gallery.setCaption(captions);
 
-        // Convert images to byte[] and store
-        List<byte[]> imageBytes = new ArrayList<>();
-        for (MultipartFile image : images) {
-            imageBytes.add(image.getBytes());
-        }
-        gallery.setImg(imageBytes);
-
+    public Gallery saveGallery(Gallery gallery) {
         return galleryRepository.save(gallery);
     }
 
-
     // show from db to website
     public List<Gallery> getAllGallery() {
-        return (List<Gallery>) galleryRepository.findAll();
+        return galleryRepository.findAll();
+    }
+
+
+    public Optional<Gallery> getGalleryById(Long id) {
+        return galleryRepository.findById(id);
+    }
+
+    @Transactional
+    public Gallery updateGallery(Long id, Gallery updatedGallery) {
+        return galleryRepository.findById(id)
+                .map(gallery -> {
+                    gallery.setThumbnailImage(updatedGallery.getThumbnailImage());
+                    gallery.setTitle(updatedGallery.getTitle());
+                    gallery.setSubtitle(updatedGallery.getSubtitle());
+                    gallery.setPostDate(updatedGallery.getPostDate());
+                    gallery.setDetails(updatedGallery.getDetails());
+                    gallery.setImages(updatedGallery.getImages()); // Update images if needed
+                    return galleryRepository.save(gallery);
+                })
+                .orElseThrow(() -> new RuntimeException("gallery not found with id " + id));
     }
 
 
     // delete by id
-
+    @Transactional
     public void deleteGallery(Long id) {
         galleryRepository.deleteById(id);
+
+        imageGalleryRepository.deleteByGalleryId(id);
     }
 
 
-    //Get Element by id to show
-    public Gallery getGalleryById(Long id) {
-        return galleryRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Gallery not found with id: " + id));
-    }
+
 
 }

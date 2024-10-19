@@ -25,24 +25,6 @@ public class GlobalBPOController {
     @Autowired
     private GlobalBPOService globalBPOService;
 
-//    @PostMapping("/createGlobalBPO")
-//    public ResponseEntity<GlobalBPO> createGlobalBPO(
-//            @RequestParam("title") String title,
-//            @RequestParam("subtitle") String subtitle,
-//            @RequestParam("postDate") LocalDate postDate,
-//            @RequestParam("details") String details,
-//            @RequestParam("images") List<MultipartFile> files,
-//            @RequestParam("captions") List<String> captions) throws IOException {
-//
-//        GlobalBPO globalBPO = new GlobalBPO();
-//        globalBPO.setTitle(title);
-//        globalBPO.setSubtitle(subtitle);
-//        globalBPO.setPostDate(postDate);
-//        globalBPO.setDetails(details);
-//
-//        GlobalBPO createdGlobalBPO = globalBPOService.createGlobalBPO(globalBPO, files, captions);
-//        return ResponseEntity.ok(createdGlobalBPO);
-//    }
 
 
 
@@ -109,6 +91,9 @@ public class GlobalBPOController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
+
+
 
     @PutMapping("/updateGlobalBPO/{id}")
     public ResponseEntity<GlobalBPO> updateGlobalBPO(@PathVariable Long id, @RequestBody GlobalBPO updatedGlobalBPO) {

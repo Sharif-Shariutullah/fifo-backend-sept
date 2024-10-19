@@ -5,6 +5,7 @@ import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,21 +22,25 @@ public class Gallery {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String title;
-    private String subtitle;
-    private LocalDate postDate;
-
-    @Column(length = 3000)
-    private String details;
-
-
-    @ElementCollection
-    private List<String> caption;
-
 
     @Lob
     @Column(columnDefinition = "longblob")
-    private  List<byte[]> img;
+    private byte[] thumbnailImage;
+
+    private String title;
+    @Column(length = 500)
+    private String subtitle;
+    private LocalDate postDate;
+
+    @Column(length = 4000)
+    private String details;
+
+
+
+    //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "globalBpo")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "gallery_id")
+    private List<ImageGallery> images = new ArrayList<>();
 
 
 }

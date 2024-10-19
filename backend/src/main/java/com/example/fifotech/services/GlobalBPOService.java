@@ -74,6 +74,7 @@ public class GlobalBPOService {
     public GlobalBPO updateGlobalBPO(Long id, GlobalBPO updatedGlobalBPO) {
         return globalBPORepository.findById(id)
                 .map(globalBPO -> {
+                    globalBPO.setThumbnailImage(updatedGlobalBPO.getThumbnailImage());
                     globalBPO.setTitle(updatedGlobalBPO.getTitle());
                     globalBPO.setSubtitle(updatedGlobalBPO.getSubtitle());
                     globalBPO.setPostDate(updatedGlobalBPO.getPostDate());
@@ -92,6 +93,9 @@ public class GlobalBPOService {
 
 
     }
+
+
+
 }
 
 
